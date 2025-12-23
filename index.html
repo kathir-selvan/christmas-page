@@ -215,8 +215,13 @@ canvas {
   <div class="overlay-text">👆 Tap anywhere to continue</div>
 </div>
 
+<<<<<<< HEAD
 <audio controls autoplay loop>
   <source src="/crtiams.mp3" type="audio/mpeg">
+=======
+<audio id="music" preload="auto" loop>
+  <source src="/chritmassong.mp3" type="audio/mpeg">
+>>>>>>> 7350bdf ( fix audio play)
 </audio>
 
 
@@ -225,22 +230,14 @@ canvas {
 const music = document.getElementById("music");
 const overlay = document.getElementById("overlay");
 
-overlay.addEventListener("click", () => {
+overlay.addEventListener("click", function () {
   overlay.style.display = "none";
 
-  music.volume = 0;
-  music.play().catch(() => {});
+  music.play();   // play FIRST (important)
 
-  let vol = 0;
-  const fade = setInterval(() => {
-    if (vol < 1) {
-      vol += 0.05;
-      music.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 150);
+  music.volume = 1; // remove fade for browser trust
 });
+
 
 /* FIREWORKS */
 const canvas = document.getElementById("fireworks");
